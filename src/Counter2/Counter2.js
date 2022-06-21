@@ -1,7 +1,7 @@
-import React from 'react'
-import {ClickedContext} from '../App'
+import React from 'react';
+import { ClickedContext } from '../App';
 
-export default () => {
+const Counter2 = () => {
   return (
     <div style={{
       border: '1px solid #ccc',
@@ -14,4 +14,6 @@ export default () => {
       </ClickedContext.Consumer>
     </div>
   )
-}
+};
+
+export default Counter2;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // to add Component classes
-export default (Component, className) => {
+const withClass = (Component, className) => {
   return props => {
     return (
       <div className={className}>
@@ -9,5 +9,6 @@ export default (Component, className) => {
       </div>
     )
   }
-}
+};
 
+export default withClass;
