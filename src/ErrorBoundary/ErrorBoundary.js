@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 
 export default class ErrorBoundary extends React.Component {
 
   state = {
-    hasError: false
-  }
+    hasError: false,
+  };
 
   componentDidCatch(error, info) {
-    this.setState({hasError: true})
+    this.setState({hasError: true});
   }
 
 
@@ -16,6 +16,6 @@ export default class ErrorBoundary extends React.Component {
       return <h1 style={{color: 'red'}}>Something went wrong</h1>
     }
 
-    return this.props.children
+    return this.props.children;
   }
-}
+};

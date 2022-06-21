@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import './App.scss'
-import Car from './Car/Car'
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
-import Counter from './Counter/Counter'
+import React, { Component } from 'react';
+import classes from './App.module.scss';
+import withClass from './hoc/withClass';
+import Car from './Car/Car';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Counter from './Counter/Counter';
 
 export const ClickedContext = React.createContext(false);
 
@@ -10,48 +11,48 @@ export const ClickedContext = React.createContext(false);
 class App extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       clicked: false,
       cars: [
         { name: 'Ford', year: 2018 },
         { name: 'Audi', year: 2016 },
-        { name: 'Mazda', year: 2010 }
+        { name: 'Mazda', year: 2010 },
       ],
       pageTitle: 'React components',
-      showCars: false
-    }
+      showCars: false,
+    };
   }
 
   toggleCarsHandler = () => {
     this.setState({
       showCars: !this.state.showCars
-    })
-  }
+    });
+  };
 
   onChangeName(name, index) {
-    const car = this.state.cars[index]
-    car.name = name
-    const cars = [...this.state.cars]
-    cars[index] = car
-    this.setState({ cars })
-  }
+    const car = this.state.cars[index];
+    car.name = name;
+    const cars = [...this.state.cars];
+    cars[index] = car;
+    this.setState({ cars });
+  };
 
   deleteHandler(index) {
-    const cars = this.state.cars.concat()
-    cars.splice(index, 1)
+    const cars = this.state.cars.concat();
+    cars.splice(index, 1);
 
-    this.setState({ cars })
-  }
+    this.setState({ cars });
+  };
 
   render() {
 
     const divStyle = {
-      textAlign: 'center'
-    }
+      textAlign: 'center',
+    };
 
-    let cars = null
+    let cars = null;
 
     if (this.state.showCars) {
       cars = this.state.cars.map((car, index) => {
@@ -66,7 +67,7 @@ class App extends Component {
             />
           </ErrorBoundary>
         )
-      })
+      });
     }
 
     return (
@@ -80,18 +81,23 @@ class App extends Component {
         <hr />
         <button
           style={{ marginTop: 20 }}
-          className={'AppButton'}
+          className={classes.AppButton}
           onClick={this.toggleCarsHandler}
         >
           Toggle cars
         </button>
 
-        <button onClick={() => this.setState({ clicked: true })}>Change clicked</button>
+        <button
+          onClick={() => this.setState({ clicked: true })}
+          className={classes.ChangeButton}
+        >
+          Change clicked
+        </button>
 
         <div style={{
           width: 400,
           margin: 'auto',
-          paddingTop: '20px'
+          paddingTop: '20px',
         }}>
           {cars}
         </div>
@@ -100,4 +106,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default withClass(App, classes.App);
